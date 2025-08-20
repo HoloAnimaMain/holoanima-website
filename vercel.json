@@ -5,9 +5,11 @@
   "installCommand": "npm install",
   "devCommand": "npm run dev",
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "@holoanima_site_url",
-    "NEXT_PUBLIC_GA_ID": "@holoanima_ga_id",
-    "YOUTUBE_API_KEY": "@holoanima_youtube_api_key"
+    "NEXT_PUBLIC_SITE_URL": "$NEXT_PUBLIC_SITE_URL",
+    "NEXT_PUBLIC_GA_ID": "$NEXT_PUBLIC_GA_ID",
+    "YOUTUBE_API_KEY": "$YOUTUBE_API_KEY",
+    "NEXT_PUBLIC_YOUTUBE_EN_PLAYLIST_ID": "$NEXT_PUBLIC_YOUTUBE_EN_PLAYLIST_ID",
+    "NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID": "$NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID"
   },
   "headers": [
     {
