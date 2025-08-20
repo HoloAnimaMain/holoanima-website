@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getYouTubeVideos } from '@/lib/youtube';
 import { Video } from '@/types/content';
 
@@ -27,9 +28,11 @@ export default async function VideosPage() {
                     <div className="p-6">
                       <div className="w-full aspect-video bg-gradient-to-br from-red-100 to-pink-100 rounded-lg mb-4 overflow-hidden">
                         <Link href={video.videoUrl} target="_blank" rel="noopener noreferrer">
-                          <img 
+                          <Image 
                             src={video.thumbnailUrl} 
                             alt={video.title}
+                            width={320}
+                            height={180}
                             className="w-full h-full object-cover transition-transform group-hover:scale-105"
                           />
                         </Link>
@@ -70,7 +73,7 @@ export default async function VideosPage() {
                 </svg>
                 <h3 className="text-2xl font-bold text-foreground mb-2">Videos Coming Soon</h3>
                 <p className="text-muted mb-6">
-                  We're working on creating amazing educational content. Check back soon for our latest videos!
+                  We&apos;re working on creating amazing educational content. Check back soon for our latest videos!
                 </p>
                 <a
                   href="https://youtube.com/@holoanima?sub_confirmation=1"

@@ -55,7 +55,7 @@ export default function ContactPage() {
         <h1 className="text-4xl font-bold text-foreground mb-6">Contact Us</h1>
         <div className="prose max-w-none">
           <p className="text-lg text-muted mb-8">
-            We'd love to hear from you! Get in touch with us through any of these channels.
+            We&apos;d love to hear from you! Get in touch with us through any of these channels.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -113,7 +113,7 @@ export default function ContactPage() {
           <div className="bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 rounded-lg p-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">Need Help?</h2>
             <p className="text-muted mb-6">
-              If you have any questions about our content, characters, or need assistance with anything else, 
+              If you have any questions about our content, characters, or need assistance with anything else,{' '}
               our team is here to help.
             </p>
             <a

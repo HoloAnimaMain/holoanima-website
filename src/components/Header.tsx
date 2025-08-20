@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { detectLanguageFromPath, generateLanguagePath, getAlternateLanguage } from '@/lib/language';
@@ -43,9 +44,11 @@ export default function Header({ currentLanguage = 'en' }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center">
             <Link href={`/${actualCurrentLanguage}`} className="flex items-center">
-              <img 
+              <Image 
                 src="/characters/HoloAnima_logo.jpeg" 
                 alt="HoloAnima Logo" 
+                width={40}
+                height={40}
                 className="h-10 w-auto rounded-lg"
               />
             </Link>

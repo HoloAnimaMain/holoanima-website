@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface FooterProps {
   currentLanguage?: 'en' | 'es';
@@ -62,9 +63,11 @@ export default function Footer({ currentLanguage = 'en' }: FooterProps) {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img 
+              <Image 
                 src="/characters/HoloAnima_logo.jpeg" 
                 alt="HoloAnima Logo" 
+                width={40}
+                height={40}
                 className="h-10 w-auto rounded-lg"
               />
               <span className="ml-3 text-2xl font-bold text-foreground">

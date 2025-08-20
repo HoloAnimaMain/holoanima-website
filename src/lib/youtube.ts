@@ -1,6 +1,35 @@
 import { cache } from 'react';
 import { Video } from '@/types/content';
 
+// Define types for YouTube API response
+interface YouTubePlaylistItem {
+  snippet: {
+    resourceId: {
+      videoId: string;
+    };
+    title: string;
+    description: string;
+    thumbnails?: {
+      default?: {
+        url: string;
+      };
+      medium?: {
+        url: string;
+      };
+      high?: {
+        url: string;
+      };
+    };
+  };
+  contentDetails: {
+    videoPublishedAt: string;
+  };
+}
+
+interface YouTubeApiResponse {
+  items: YouTubePlaylistItem[];
+}
+
 export const getYouTubeVideos = cache(async (language: 'en' | 'es' = 'en', maxResults: number = 12): Promise<Video[]> => {
   const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
   
@@ -24,15 +53,15 @@ export const getYouTubeVideos = cache(async (language: 'en' | 'es' = 'en', maxRe
       throw new Error(`YouTube API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: YouTubeApiResponse = await response.json();
     
     return data.items
-      .map((item: any) => ({
+      .map((item) => ({
         id: item.snippet.resourceId.videoId,
         title: item.snippet.title,
         description: item.snippet.description,
         publishedAt: item.contentDetails.videoPublishedAt,
-        thumbnailUrl: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url,
+        thumbnailUrl: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url || '',
         videoUrl: `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`,
       }));
   } catch (error) {
