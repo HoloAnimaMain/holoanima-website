@@ -47,7 +47,10 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Videos Card */}
-            <div className="card group overflow-hidden">
+            <Link 
+              href="/es/videos"
+              className="card group overflow-hidden"
+            >
               <div className="p-6">
                 <div className="w-full h-32 bg-gradient-to-br from-red-100 to-pink-100 rounded-lg mb-4 flex items-center justify-center">
                   <svg className="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
@@ -58,17 +61,17 @@ export default function HomePage() {
                 <p className="text-muted mb-4">
                   Mira nuestro contenido educativo animado con IA en YouTube.
                 </p>
-                <Link
-                  href="/es/videos"
-                  className="text-primary font-medium group-hover:underline"
-                >
+                <div className="inline-block text-primary text-sm font-medium group-hover:underline">
                   Explorar Videos →
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Characters Card */}
-            <div className="card group overflow-hidden">
+            <Link 
+              href="/es/characters"
+              className="card group overflow-hidden"
+            >
               <div className="p-6">
                 <div className="w-full h-32 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg mb-4 flex items-center justify-center">
                   <span className="text-4xl">🐭</span>
@@ -77,17 +80,17 @@ export default function HomePage() {
                 <p className="text-muted mb-4">
                   Descubre a Pip, Luna, Stella y todos nuestros queridos personajes.
                 </p>
-                <Link
-                  href="/es/characters"
-                  className="text-primary font-medium group-hover:underline"
-                >
+                <div className="inline-block text-primary text-sm font-medium group-hover:underline">
                   Conocer Personajes →
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Blog Card */}
-            <div className="card group overflow-hidden">
+            <Link 
+              href="/es/blog"
+              className="card group overflow-hidden"
+            >
               <div className="p-6">
                 <div className="w-full h-32 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg mb-4 flex items-center justify-center">
                   <svg className="h-12 w-12 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,14 +101,11 @@ export default function HomePage() {
                 <p className="text-muted mb-4">
                   Lee historias y conocimientos de nuestras aventuras educativas.
                 </p>
-                <Link
-                  href="/es/blog"
-                  className="text-primary font-medium group-hover:underline"
-                >
+                <div className="inline-block text-primary text-sm font-medium group-hover:underline">
                   Leer Historias →
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
