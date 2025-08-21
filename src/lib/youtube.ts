@@ -38,24 +38,38 @@ export const getYouTubeVideos = cache(async (language: 'en' | 'es' = 'en', maxRe
     ? process.env.NEXT_PUBLIC_YOUTUBE_EN_PLAYLIST_ID 
     : process.env.NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID;
 
-  if (!YOUTUBE_API_KEY || !PLAYLIST_ID) {
-    console.warn(`YouTube API key or ${language} playlist ID not configured`);
+  console.log(`Fetching videos for language: ${language}, playlist: ${PLAYLIST_ID}`);
+
+  if (!YOUTUBE_API_KEY) {
+    console.warn('YouTube API key not configured');
+    return [];
+  }
+
+  if (!PLAYLIST_ID) {
+    console.warn(`${language} playlist ID not configured`);
     return [];
   }
 
   try {
-    const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?key=${YOUTUBE_API_KEY}&playlistId=${PLAYLIST_ID}&part=snippet,contentDetails&maxResults=${maxResults}`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
-    );
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?key=${YOUTUBE_API_KEY}&playlistId=${PLAYLIST_ID}&part=snippet,contentDetails&maxResults=${maxResults}`;
+    console.log(`Fetching from YouTube API: ${url}`);
+    
+    const response = await fetch(url, {
+      next: { revalidate: 3600 } // Revalidate every hour
+    });
+
+    console.log(`YouTube API response status: ${response.status}`);
 
     if (!response.ok) {
-      throw new Error(`YouTube API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`YouTube API error: ${response.status} - ${errorText}`);
+      throw new Error(`YouTube API error: ${response.status} - ${errorText}`);
     }
 
     const data: YouTubeApiResponse = await response.json();
+    console.log(`YouTube API returned ${data.items.length} items`);
     
-    return data.items
+    const videos = data.items
       .map((item) => ({
         id: item.snippet.resourceId.videoId,
         title: item.snippet.title,
@@ -64,6 +78,9 @@ export const getYouTubeVideos = cache(async (language: 'en' | 'es' = 'en', maxRe
         thumbnailUrl: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url || '',
         videoUrl: `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`,
       }));
+      
+    console.log(`Mapped ${videos.length} videos`);
+    return videos;
   } catch (error) {
     console.error('Error fetching videos:', error);
     return [];
