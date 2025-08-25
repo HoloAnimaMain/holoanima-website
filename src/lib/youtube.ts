@@ -39,6 +39,9 @@ export const getYouTubeVideos = cache(async (language: 'en' | 'es' = 'en', maxRe
     : process.env.NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID;
 
   console.log(`Fetching videos for language: ${language}, playlist: ${PLAYLIST_ID}`);
+  console.log(`YOUTUBE_API_KEY available: ${!!YOUTUBE_API_KEY}`);
+  console.log(`NEXT_PUBLIC_YOUTUBE_EN_PLAYLIST_ID available: ${!!process.env.NEXT_PUBLIC_YOUTUBE_EN_PLAYLIST_ID}`);
+  console.log(`NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID available: ${!!process.env.NEXT_PUBLIC_YOUTUBE_ES_PLAYLIST_ID}`);
 
   if (!YOUTUBE_API_KEY) {
     console.warn('YouTube API key not configured');
